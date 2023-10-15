@@ -1,8 +1,18 @@
+import playwright from 'playwright';
 import { test, expect } from '@playwright/test';
+import logger from '../service/logger';
 
 test.describe('Feedback Form', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://zero.webappsecurity.com/index.html');
+    try {
+      await page.goto('http://zero.webappsecurity.com/index.html');
+      logger.info('Site visited');
+    } catch (e) {
+      if (e instanceof playwright.errors.TimeoutError) {
+        await page.goto('http://zero.webappsecurity.com/index.html');
+      }
+    }
+
     await page.click('#feedback');
   });
 
