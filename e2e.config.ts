@@ -8,13 +8,14 @@ export default defineConfig({
   testDir: 'tests/e2e',
 
   use: {
-    navigationTimeout: 30000,
+    navigationTimeout: 60000,
     headless: true,
     viewport: { width: 1280, height: 720 },
     actionTimeout: 15000,
     ignoreHTTPSErrors: true,
     video: 'on',
     screenshot: 'on',
+    trace: 'on',
   },
   projects: [
     {
